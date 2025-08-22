@@ -37,7 +37,7 @@ dependencies:
   # HTTP client for web requests
   http: ^1.1.0
   # Audio player for web audio support
-  just_audio: ^0.9.36
+  just_audio: ^0.10.4
 
 dev_dependencies:
   lint: ^2.3.0
