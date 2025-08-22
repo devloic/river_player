@@ -4,7 +4,7 @@ version: 1.0.0+1
 publish_to: none
 
 environment:
-  sdk: '>=2.12.0 <4.0.0'
+  sdk: '>=3.0.0 <4.0.0'
 
 dependencies:
   river_player:
@@ -16,6 +16,11 @@ dependencies:
   path_provider: ^2.0.10
   visibility_detector: ^0.4.0+2
   collection: ^1.16.0
+  # MediaKit platform libraries for desktop support
+  media_kit_libs_windows_video: ^1.0.5
+  media_kit_libs_macos_video: ^1.0.5  
+  media_kit_libs_linux: ^1.0.5
+  media_kit_libs_video: ^1.0.5
 
 dev_dependencies:
   flutter_test:

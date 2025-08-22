@@ -11,6 +11,8 @@ import 'package:flutter/widgets.dart';
 import 'package:river_player/src/configuration/better_player_buffering_configuration.dart';
 
 import 'method_channel_video_player.dart';
+import 'media_kit_video_player.dart';
+import 'package:universal_platform/universal_platform.dart';
 
 /// The interface that implementations of video_player must implement.
 ///
@@ -28,7 +30,7 @@ abstract class VideoPlayerPlatform {
   @visibleForTesting
   bool get isMock => false;
 
-  static VideoPlayerPlatform _instance = MethodChannelVideoPlayer();
+  static VideoPlayerPlatform? _instance;
 
   /// The default instance of [VideoPlayerPlatform] to use.
   ///
@@ -36,8 +38,26 @@ abstract class VideoPlayerPlatform {
   /// platform-specific class that extends [VideoPlayerPlatform] when they
   /// register themselves.
   ///
-  /// Defaults to [MethodChannelVideoPlayer].
-  static VideoPlayerPlatform get instance => _instance;
+  /// Defaults to platform-appropriate implementation.
+  static VideoPlayerPlatform get instance {
+    if (_instance == null) {
+      // Choose implementation based on platform
+      if (UniversalPlatform.isAndroid || UniversalPlatform.isIOS) {
+        // Use native implementation for mobile platforms
+        _instance = MethodChannelVideoPlayer();
+      } else if (UniversalPlatform.isWindows || 
+                 UniversalPlatform.isMacOS || 
+                 UniversalPlatform.isLinux || 
+                 UniversalPlatform.isWeb) {
+        // Use MediaKit implementation for desktop and web
+        _instance = MediaKitVideoPlayer();
+      } else {
+        // Fallback to MediaKit for any other platforms
+        _instance = MediaKitVideoPlayer();
+      }
+    }
+    return _instance!;
+  }
 
   // TODO(amirh): Extract common platform interface logic.
   // https://github.com/flutter/flutter/issues/43368

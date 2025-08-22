@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:better_player_example/constants.dart';
 import 'package:better_player_example/pages/auto_fullscreen_orientation_page.dart';
 import 'package:better_player_example/pages/basic_player_page.dart';
+import 'package:better_player_example/pages/raw_mediakit_test_page.dart';
+import 'package:better_player_example/pages/fixed_mediakit_test_page.dart';
 import 'package:better_player_example/pages/cache_page.dart';
 import 'package:better_player_example/pages/clearkey_page.dart';
 import 'package:better_player_example/pages/controller_controls_page.dart';
@@ -29,6 +31,7 @@ import 'package:better_player_example/pages/rotation_and_fit_page.dart';
 import 'package:better_player_example/pages/subtitles_page.dart';
 import 'package:better_player_example/pages/video_list/video_list_page.dart';
 import 'package:better_player_example/pages/picture_in_picture_page.dart';
+import 'package:better_player_example/pages/platform_info_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
@@ -78,6 +81,15 @@ class _WelcomePageState extends State<WelcomePage> {
 
   List<Widget> buildExampleElementWidgets() {
     return [
+      _buildExampleElementWidget("🚀 Platform Info (Multiplatform Support)", () {
+        _navigateToPage(PlatformInfoPage());
+      }),
+      _buildExampleElementWidget("🔧 Raw MediaKit Test (Debug)", () {
+        _navigateToPage(RawMediaKitTestPage());
+      }),
+      _buildExampleElementWidget("🛠️ FIXED MediaKit Test (Linux Video Fix)", () {
+        _navigateToPage(FixedMediaKitTestPage());
+      }),
       _buildExampleElementWidget("Basic player", () {
         _navigateToPage(BasicPlayerPage());
       }),

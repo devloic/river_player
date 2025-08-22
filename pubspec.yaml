@@ -23,6 +23,14 @@ dependencies:
   path_provider: ^2.0.10
   collection: ^1.16.0
   xml: ^6.1.0
+  # Media kit dependencies for desktop/web support
+  media_kit: ^1.2.0
+  media_kit_video: ^1.3.0
+  media_kit_libs_windows_video: ^1.0.5
+  media_kit_libs_linux: ^1.0.5
+  media_kit_libs_macos_video: ^1.0.5
+  media_kit_libs_video: ^1.0.5
+  universal_platform: ^1.0.0+1
 
 dev_dependencies:
   lint: ^2.3.0
@@ -37,5 +45,19 @@ flutter:
       android:
         package: ir.r3r.river_player
         pluginClass: RiverPlayerPlugin
+        fileName: river_player_plugin.dart
       ios:
         pluginClass: RiverPlayerPlugin
+        fileName: river_player_plugin.dart
+      linux:
+        pluginClass: RiverPlayerPlugin
+        fileName: river_player_plugin.dart
+      windows:
+        pluginClass: RiverPlayerPlugin
+        fileName: river_player_plugin.dart
+      macos:
+        pluginClass: RiverPlayerPlugin
+        fileName: river_player_plugin.dart
+      web:
+        pluginClass: RiverPlayerPlugin
+        fileName: river_player_plugin.dart

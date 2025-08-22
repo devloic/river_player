@@ -1,5 +1,9 @@
 library river_player;
 
+// Platform initialization
+export 'src/river_player_platform.dart';
+
+// Core functionality
 export 'src/asms/better_player_asms_audio_track.dart';
 export 'src/asms/better_player_asms_data_holder.dart';
 export 'src/asms/better_player_asms_subtitle.dart';
@@ -36,5 +40,8 @@ export 'src/playlist/better_player_playlist_controller.dart';
 export 'src/subtitles/better_player_subtitles_configuration.dart';
 export 'src/subtitles/better_player_subtitles_source.dart';
 export 'src/subtitles/better_player_subtitles_source_type.dart';
+
+// Video player interface
 export 'src/video_player/video_player.dart' show VideoPlayerValue;
 export 'src/video_player/video_player_platform_interface.dart';
+export 'src/video_player/multiplatform_video_player.dart';

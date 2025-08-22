@@ -4,8 +4,12 @@ import 'package:better_player_example/pages/welcome_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:river_player/river_player.dart';
 
 void main() {
+  // Initialize River Player for multiplatform support
+  RiverPlayerPlatform.ensureInitialized();
+  
   HttpOverrides.global = MyHttpOverrides();
   runApp(MyApp());
 }
