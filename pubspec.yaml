@@ -53,8 +53,7 @@ flutter:
         pluginClass: RiverPlayerPlugin
         fileName: river_player_plugin.dart
       windows:
-        pluginClass: RiverPlayerPlugin
-        fileName: river_player_plugin.dart
+        pluginClass: RiverPlayerPluginCApi
       macos:
         pluginClass: RiverPlayerPlugin
         fileName: river_player_plugin.dart

@@ -82,7 +82,7 @@ class MediaKitVideoPlayer extends VideoPlayerPlatform {
     final videoController = VideoController(
       player,
       configuration: const VideoControllerConfiguration(
-        enableHardwareAcceleration: false, // Fix for Linux video rendering
+        enableHardwareAcceleration: false, // Required for proper video rendering on Linux
         // Additional thread safety options
         androidAttachSurfaceAfterVideoParameters: false,
       ),
