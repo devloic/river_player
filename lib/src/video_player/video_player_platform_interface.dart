@@ -12,6 +12,8 @@ import 'package:river_player/src/configuration/better_player_buffering_configura
 
 import 'method_channel_video_player.dart';
 import 'media_kit_video_player.dart';
+import 'web_video_player.dart';
+import 'invidious_web_video_player.dart';
 import 'package:universal_platform/universal_platform.dart';
 
 /// The interface that implementations of video_player must implement.
@@ -47,10 +49,12 @@ abstract class VideoPlayerPlatform {
         _instance = MethodChannelVideoPlayer();
       } else if (UniversalPlatform.isWindows || 
                  UniversalPlatform.isMacOS || 
-                 UniversalPlatform.isLinux || 
-                 UniversalPlatform.isWeb) {
-        // Use MediaKit implementation for desktop and web
+                 UniversalPlatform.isLinux) {
+        // Use MediaKit implementation for desktop platforms
         _instance = MediaKitVideoPlayer();
+      } else if (UniversalPlatform.isWeb) {
+        // Use DASH XML parsing web video player implementation
+        _instance = DashWebVideoPlayer();
       } else {
         // Fallback to MediaKit for any other platforms
         _instance = MediaKitVideoPlayer();

@@ -196,7 +196,7 @@ class MethodChannelVideoPlayer extends VideoPlayerPlatform {
       'seekTo',
       <String, dynamic>{
         'textureId': textureId,
-        'location': position!.inMilliseconds,
+        'location': position?.inMilliseconds ?? 0,
       },
     );
   }
