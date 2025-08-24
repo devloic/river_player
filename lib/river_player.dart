@@ -45,3 +45,4 @@ export 'src/subtitles/better_player_subtitles_source_type.dart';
 export 'src/video_player/video_player.dart' show VideoPlayerValue;
 export 'src/video_player/video_player_platform_interface.dart';
 export 'src/video_player/multiplatform_video_player.dart';
+export 'src/video_player/windows_dash_video_controller.dart';

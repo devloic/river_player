@@ -14,6 +14,7 @@ import 'method_channel_video_player.dart';
 import 'media_kit_video_player.dart';
 import 'web_video_player.dart';
 import 'invidious_web_video_player.dart';
+import 'videowin_video_player.dart';
 import 'package:universal_platform/universal_platform.dart';
 
 /// The interface that implementations of video_player must implement.
@@ -47,9 +48,10 @@ abstract class VideoPlayerPlatform {
       if (UniversalPlatform.isAndroid || UniversalPlatform.isIOS) {
         // Use native implementation for mobile platforms
         _instance = MethodChannelVideoPlayer();
-      } else if (UniversalPlatform.isWindows || 
-                 UniversalPlatform.isMacOS || 
-                 UniversalPlatform.isLinux) {
+      } else if (UniversalPlatform.isWindows) {
+        // Use MediaKit implementation for Windows (VideoWin will override for DASH)
+        _instance = MediaKitVideoPlayer();
+      } else if (UniversalPlatform.isMacOS || UniversalPlatform.isLinux) {
         // Use MediaKit implementation for desktop platforms
         _instance = MediaKitVideoPlayer();
       } else if (UniversalPlatform.isWeb) {
@@ -61,6 +63,30 @@ abstract class VideoPlayerPlatform {
       }
     }
     return _instance!;
+  }
+
+  /// Gets the appropriate video player implementation for a specific data source
+  /// This allows dynamic selection based on the content type
+  static VideoPlayerPlatform getInstanceForDataSource(DataSource? dataSource) {
+    // Check if this is a Windows DASH stream
+    if (UniversalPlatform.isWindows && dataSource != null && _isDashStream(dataSource)) {
+      return VideoWinVideoPlayer();
+    }
+    
+    // Otherwise use the default instance
+    return instance;
+  }
+
+  /// Determines if a data source is a DASH stream
+  static bool _isDashStream(DataSource dataSource) {
+    if (dataSource.sourceType != DataSourceType.network || dataSource.uri == null) {
+      return false;
+    }
+
+    final uri = dataSource.uri!.toLowerCase();
+    return uri.contains('.mpd') || 
+           uri.contains('manifest') && uri.contains('dash') ||
+           dataSource.formatHint == VideoFormat.dash;
   }
 
   // TODO(amirh): Extract common platform interface logic.

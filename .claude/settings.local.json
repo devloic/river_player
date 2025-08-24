@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(/C:\\Users\\dd\\StudioProjects\\videowin/**)",
+      "Read(/C:\\Users\\dd\\StudioProjects\\videowin\\lib/**)",
+      "Bash(flutter create:*)",
+      "Bash(flutter pub:*)",
+      "Bash(flutter run:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

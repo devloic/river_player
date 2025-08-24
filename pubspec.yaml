@@ -26,7 +26,6 @@ dependencies:
   # Media kit dependencies for desktop support
   media_kit: ^1.2.0
   media_kit_video: ^1.3.0
-  media_kit_libs_windows_video: ^1.0.11
   media_kit_libs_linux: ^1.2.1
   media_kit_libs_macos_video: ^1.1.4
   media_kit_libs_video: ^1.0.6
@@ -38,6 +37,9 @@ dependencies:
   http: ^1.1.0
   # Audio player for web audio support
   just_audio: ^0.10.4
+  # VideoWin for Windows DASH streaming
+  videowin:
+    path: ../videowin
 
 dev_dependencies:
   lint: ^2.3.0

@@ -12,6 +12,7 @@ import 'package:universal_platform/universal_platform.dart';
 import 'video_player_platform_interface.dart';
 import 'method_channel_video_player.dart';
 import 'media_kit_video_player.dart';
+import 'videowin_video_player.dart';
 
 /// Multiplatform video player that automatically chooses the appropriate
 /// implementation based on the current platform.
@@ -19,13 +20,14 @@ class MultiplatformVideoPlayer {
   
   /// Initializes the appropriate video player implementation for the current platform
   static void initialize() {
-    // Initialize MediaKit for desktop/web platforms
-    if (UniversalPlatform.isWindows || 
-        UniversalPlatform.isMacOS || 
+    // Initialize MediaKit for desktop/web platforms (except Windows for DASH)
+    if (UniversalPlatform.isMacOS || 
         UniversalPlatform.isLinux || 
         UniversalPlatform.isWeb) {
       MediaKitVideoPlayer.ensureInitialized();
     }
+    
+    // VideoWin is initialized when needed for Windows DASH streaming
   }
 
   /// Gets the platform-appropriate video player implementation
